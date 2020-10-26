@@ -18,4 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+// Pour accéder à toutes les routes : get,post,put, etc
 Route::resource('films',FilmController::class);
+
+// Route pour chercher les films par catégorie
+Route::get('category/{slug}/films', [FilmController::class, 'index'])
+        ->name('films.category');

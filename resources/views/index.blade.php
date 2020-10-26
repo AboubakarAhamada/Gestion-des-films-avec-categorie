@@ -9,16 +9,25 @@
     
 @endif
 <div class="card">
-    <div class="card-header">
-     <p class="card-header-title">Films</p>
-    <a class="button is-info" href="{{route('films.create')}}">Créer un film</a>
-    </div>
+    <header class="card-header">
+        <p class="card-header-title">Films</p>
+        <div class="select">
+            <select onchange="window.location.href = this.value">
+                <option value="{{ route('films.index') }}" @unless($slug) selected @endunless>Toutes catégories</option>
+                @foreach($categories as $category)
+                    <option value="{{ route('films.category', $category->slug) }}" {{ $slug == $category->slug ? 'selected' : '' }}>{{ $category->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        &nbsp;&nbsp;
+        <a class="button is-info" href="{{ route('films.create') }}">Créer un film</a>
+    </header>
+    
     <div class="card-content">
         <div class="content">
         <table class="table is-hoverable">
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>Titre</th>
                     <th></th>
                     <th></th>
@@ -28,7 +37,6 @@
             <tbody>
                 @foreach ($films as $film)
                     <tr>
-                        <td>{{$film->id}}</td>
                         <td><strong>{{$film->title}}</strong></td>
                         <td> <a class="button is-primary" 
                             href="{{route('films.show',$film->id)}}">Voir</a> 
@@ -51,7 +59,8 @@
     
     <div>
         <footer class="card-footer">
-            {{--$films->links()}--}
+            <!--Il faut regler la pagination -->
+            {{$films->links()}}
         </footer>
     </div>
     

@@ -4,12 +4,14 @@
 
 <div class="card">
     <div class="card-header">
-    <p class="card-header-title">{{$film->title}}</p>
+    <p class="card-header-title"> <strong>Titre : </strong> &nbsp; {{$film->title}}</p>
     </div>
 </div>
 <div class="card-content">
     <div class="content">
-    <p>Année de sortie : {{$film->year}}</p>
+    <p> <strong>Catégorie :</strong> {{$category->name}}</p>
+    <hr>
+    <p> <strong>Année de sortie :</strong> {{$film->year}}</p>
     <hr>
     <p>{{$film->description}}</p>
     </div>
